@@ -6,7 +6,7 @@ clean:
 
 test: clean
 	@flake8 mailupy
-	@pytest --cov mailupy -s --cov-report term-missing
+	@pytest --cov=mailupy -s --cov-report=xml --cov-report=term-missing
 
 docs: clean
 	@flake8 mailupy

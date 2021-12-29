@@ -36,3 +36,4 @@ build
 
 # Testing
 spike.py
+coverage.xml
