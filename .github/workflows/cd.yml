@@ -26,15 +26,9 @@ jobs:
     - name: Generate docs with Sphinx
       run: |
         make docs
-        mv mailupy_docs generated_docs
-    - name: Push docs
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
     - name: Deploy docs
       uses: JamesIves/github-pages-deploy-action@4.1.7
       with:
         branch: gh-pages
-        folder: generated_docs
-    
+        folder: mailupy_docs
+
