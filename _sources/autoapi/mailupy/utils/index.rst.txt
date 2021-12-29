@@ -1,0 +1,15 @@
+:mod:`mailupy.utils`
+====================
+
+.. py:module:: mailupy.utils
+
+
+Module Contents
+---------------
+
+.. data:: type_to_request_function
+   
+
+   Request type mapping
+
+

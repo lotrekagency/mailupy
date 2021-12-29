@@ -1,4 +1,0 @@
-[run]
-omit = */**/__init__.py
-  mailupy/debugger.py
-  mailupy/exceptions.py

@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quickstart &mdash; mailupy 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to mailupy’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> mailupy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">mailupy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quickstart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>First of all, import Mailupy and instantiate the client:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mailupy</span> <span class="kn">import</span> <span class="n">Mailupy</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Mailupy</span><span class="p">(</span>
+<span class="go">  &#39;m00000&#39;,</span>
+<span class="go">  &#39;m@1lUPf4k3&#39;,</span>
+<span class="go">  &#39;8123dbff-d12c-4e3d-a55e-23a8c5a303f8&#39;,</span>
+<span class="go">  &#39;16cadddf-a145-45db-9347-a5ab51ac223d&#39;</span>
+<span class="go">)</span>
+</pre></div>
+</div>
+<p>The client will login automatically to MailUp.
+After it you can start use the client for:</p>
+<blockquote>
+<div><ul>
+<li><p>Getting information about fields, groups…</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="p">(</span><span class="n">field</span><span class="p">)</span>
+<span class="go">{&#39;Description&#39;: &#39;compleanno&#39;, &#39;Id&#39;: 27}</span>
+<span class="go">{&#39;Description&#39;: &#39;idtuttiprodottiacquistati&#39;, &#39;Id&#39;: 26}</span>
+<span class="go">{&#39;Description&#39;: &#39;totalefatturatoultimi30gg&#39;, &#39;Id&#39;: 25}</span>
+<span class="go">{&#39;Description&#39;: &#39;totalefatturatoultimi12mesi&#39;, &#39;Id&#39;: 24}</span>
+<span class="go">{&#39;Description&#39;: &#39;totalefatturato&#39;, &#39;Id&#39;: 23}</span>
+<span class="go">{&#39;Description&#39;: &#39;idcarrelloabbandonato&#39;, &#39;Id&#39;: 22}</span>
+<span class="go">{&#39;Description&#39;: &#39;totalecarrelloabbandonato&#39;, &#39;Id&#39;: 21}</span>
+<span class="go">{&#39;Description&#39;: &#39;datacarrelloabbandonato&#39;, &#39;Id&#39;: 20}</span>
+<span class="go">{&#39;Description&#39;: &#39;idultimoordinespedito&#39;, &#39;Id&#39;: 19}</span>
+<span class="go">{&#39;Description&#39;: &#39;dataultimoordinespedito&#39;, &#39;Id&#39;: 18}</span>
+<span class="go">{&#39;Description&#39;: &#39;idcategorieultimoordine&#39;, &#39;Id&#39;: 17}</span>
+<span class="go">{&#39;Description&#39;: &#39;idprodottiultimoordine&#39;, &#39;Id&#39;: 16}</span>
+<span class="go">{&#39;Description&#39;: &#39;totaleultimoordine&#39;, &#39;Id&#39;: 15}</span>
+<span class="go">{&#39;Description&#39;: &#39;dataultimoordine&#39;, &#39;Id&#39;: 14}</span>
+<span class="go">{&#39;Description&#39;: &#39;idultimoordine&#39;, &#39;Id&#39;: 13}</span>
+<span class="go">{&#39;Description&#39;: &#39;idcliente&#39;, &#39;Id&#39;: 12}</span>
+<span class="go">{&#39;Description&#39;: &#39;telefono&#39;, &#39;Id&#39;: 11}</span>
+<span class="go">{&#39;Description&#39;: &#39;fax&#39;, &#39;Id&#39;: 10}</span>
+<span class="go">{&#39;Description&#39;: &#39;indirizzo&#39;, &#39;Id&#39;: 9}</span>
+<span class="go">{&#39;Description&#39;: &#39;paese&#39;, &#39;Id&#39;: 8}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">get_groups_from_list</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<span class="go">{&#39;Count&#39;: None, &#39;Deletable&#39;: True, &#39;Name&#39;: &#39;Gruppo&#39;, &#39;Notes&#39;: &#39;&#39;, &#39;idGroup&#39;: 7, &#39;idList&#39;: 1}</span>
+<span class="go">{&#39;Count&#39;: None, &#39;Deletable&#39;: False, &#39;Name&#39;: &#39;TEST&#39;, &#39;Notes&#39;: &#39;Gruppo per invii di test&#39;, &#39;idGroup&#39;: 6, &#39;idList&#39;: 1}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Getting recipients from lists using Ordering and Filtering
+<a class="reference external" href="http://help.mailup.com/display/mailupapi/Paging+and+filtering">(Mailup Documentation)</a></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">get_groups_from_list</span><span class="p">(</span>
+<span class="gp">... </span>  <span class="mi">1</span><span class="p">,</span> <span class="n">filter_by</span><span class="o">=</span><span class="s1">&#39;Name.Contains(</span><span class="se">\&#39;</span><span class="s1">Gruppo</span><span class="se">\&#39;</span><span class="s1">)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="n">order_by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name asc&#39;</span><span class="p">,</span> <span class="s1">&#39;idGroup desc&#39;</span><span class="p">]):</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+<span class="go">{&#39;Count&#39;: None, &#39;Deletable&#39;: True, &#39;Name&#39;: &#39;Gruppo&#39;, &#39;Notes&#39;: &#39;QWERTYUIOP&#39;, &#39;idGroup&#39;: 9, &#39;idList&#39;: 1}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">recipient</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">get_subscribed_recipients_from_list</span><span class="p">(</span>
+<span class="gp">... </span>  <span class="mi">1</span><span class="p">,</span> <span class="n">filter_by</span><span class="o">=</span><span class="s1">&#39;Email.Contains(</span><span class="se">\&#39;</span><span class="s1">lotrek</span><span class="se">\&#39;</span><span class="s1">)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="n">order_by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Email desc&#39;</span><span class="p">]):</span>
+<span class="gp">... </span>  <span class="nb">print</span><span class="p">(</span><span class="n">recipient</span><span class="p">[</span><span class="s1">&#39;Email&#39;</span><span class="p">])</span>
+<span class="go">edoardo.grassi+7@lotrek.it</span>
+<span class="go">edoardo.grassi+111@lotrek.it</span>
+<span class="go">edoardo.grassi+10@lotrek.it</span>
+<span class="go">edoardo.grassi@lotrek.it</span>
+</pre></div>
+</div>
+</li>
+<li><p>Getting a subscribed recipient from a list</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get_subscribed_recipient_from_list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;edoardo.grassi@lotrek.it&#39;</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">  &#39;Fields&#39;: [</span>
+<span class="go">    {&#39;Description&#39;: &#39;nome&#39;, &#39;Id&#39;: 1, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;cognome&#39;, &#39;Id&#39;: 2, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;azienda&#39;, &#39;Id&#39;: 3, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;città&#39;, &#39;Id&#39;: 4, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;provincia&#39;, &#39;Id&#39;: 5, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;cap&#39;, &#39;Id&#39;: 6, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;regione&#39;, &#39;Id&#39;: 7, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;paese&#39;, &#39;Id&#39;: 8, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;indirizzo&#39;, &#39;Id&#39;: 9, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;fax&#39;, &#39;Id&#39;: 10, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;telefono&#39;, &#39;Id&#39;: 11, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDCliente&#39;, &#39;Id&#39;: 12, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDUltimoOrdine&#39;, &#39;Id&#39;: 13, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;DataUltimoOrdine&#39;, &#39;Id&#39;: 14, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;TotaleUltimoOrdine&#39;, &#39;Id&#39;: 15, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDProdottiUltimoOrdine&#39;, &#39;Id&#39;: 16, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDCategorieUltimoOrdine&#39;, &#39;Id&#39;: 17, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;DataUltimoOrdineSpedito&#39;, &#39;Id&#39;: 18, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDUltimoOrdineSpedito&#39;, &#39;Id&#39;: 19, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;DataCarrelloAbbandonato&#39;, &#39;Id&#39;: 20, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;TotaleCarrelloAbbandonato&#39;, &#39;Id&#39;: 21, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDCarrelloAbbandonato&#39;, &#39;Id&#39;: 22, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;TotaleFatturato&#39;, &#39;Id&#39;: 23, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;TotaleFatturatoUltimi12Mesi&#39;, &#39;Id&#39;: 24, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;TotaleFatturatoUltimi30gg&#39;, &#39;Id&#39;: 25, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;IDTuttiProdottiAcquistati&#39;, &#39;Id&#39;: 26, &#39;Value&#39;: &#39;&#39;},</span>
+<span class="go">    {&#39;Description&#39;: &#39;Compleanno&#39;, &#39;Id&#39;: 27, &#39;Value&#39;: &#39;&#39;}</span>
+<span class="go">  ],</span>
+<span class="go">  &#39;Name&#39;: &#39;edoardo.grassi@lotrek.it&#39;,</span>
+<span class="go">  &#39;idRecipient&#39;: 14,</span>
+<span class="go">  &#39;Email&#39;: &#39;edoardo.grassi@lotrek.it&#39;,</span>
+<span class="go">  &#39;MobileNumber&#39;: None,</span>
+<span class="go">  &#39;MobilePrefix&#39;: None</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Subscribe/Unsubscribe recipient to/from lists</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">recipient_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">subscribe_to_list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Andrea Stagi&#39;</span><span class="p">,</span> <span class="s1">&#39;stagi.andrea@gmail.com&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">unsubscribe_from_list</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">recipient_id</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to mailupy’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Lotrèk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

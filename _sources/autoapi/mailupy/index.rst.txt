@@ -1,0 +1,458 @@
+:mod:`mailupy`
+==============
+
+.. py:module:: mailupy
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   client/index.rst
+   exceptions/index.rst
+   utils/index.rst
+
+
+Package Contents
+----------------
+
+.. py:class:: Mailupy(username, password, client_id, client_secret)
+
+   Client class for MailUp.
+
+   .. attribute:: AUTH_URL
+      :annotation: = https://services.mailup.com/Authorization/OAuth/Token
+
+      MailUp URL for authentication
+
+
+   .. attribute:: BASE_URL
+      :annotation: = https://services.mailup.com/API/v1.1/Rest/ConsoleService.svc/Console
+
+      MailUP API URL
+
+
+   .. method:: login(self)
+
+
+      Logins to MailUp using credentials provided in :func:`~mailupy.Mailupy.__init__()`.
+
+      This is automatically called with :func:`~mailupy.Mailupy.__init__()`.
+
+      :rtype: bool
+
+
+   .. method:: get_fields(self, **filter_ordering)
+
+
+      Get recipients' dynamic fields definitions.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Readpersonaldatafieldsconfiguration>`__
+
+      :param filter_ordering: Keyword arguments for filtering data with ``filter_by='...'`` or sorting data with
+          ``order_by=['field1', ...]`` as described `here
+          <http://help.mailup.com/display/mailupapi/Paging+and+filtering>`__
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict`` containing definitions about the fields
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_groups_from_list(self, list_id, **filter_ordering)
+
+
+      Get groups' data by list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Manage+Lists+and+Groups#ManageListsandGroups-ReadGroups>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param filter_ordering: Keyword arguments for filtering data with ``filter_by='...'`` or sorting data with
+          ``order_by=['field1', ...]`` as described `here
+          <http://help.mailup.com/display/mailupapi/Paging+and+filtering>`__
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict`` containing data about groups
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_recipients_from_list(self, list_id, **filter_ordering)
+
+
+      Get recipients' data both subscribed and unsubscribed to a list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Readrecipientswithallsubscriptiondetails>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param filter_ordering: Keyword arguments for filtering data with ``filter_by='...'`` or sorting data with
+          ``order_by=['field1', ...]`` as described `here
+          <http://help.mailup.com/display/mailupapi/Paging+and+filtering>`__
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict`` containing data about recipients
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_subscribed_recipients_from_list(self, list_id, **filter_ordering)
+
+
+      Get recipients' data subscribed to a list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Readsubscribedrecipients>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param filter_ordering: Keyword arguments for filtering data with ``filter_by='...'`` or sorting data with
+          ``order_by=['field1', ...]`` as described `here
+          <http://help.mailup.com/display/mailupapi/Paging+and+filtering>`__
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict`` containing data about recipients
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_unsubscribed_recipients_from_list(self, list_id, **filter_ordering)
+
+
+      Get recipients' data unsubscribed to a list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Readunsubscribedrecipients>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param filter_ordering: Keyword arguments for filtering data with ``filter_by='...'`` or sorting data with
+          ``order_by=['field1', ...]`` as described `here
+          <http://help.mailup.com/display/mailupapi/Paging+and+filtering>`__
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict``s containing data about recipients
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_recipient_from_list(self, list_id, recipient_email)
+
+
+      Get recipient's data subscribed or unsubscribed to a list.
+
+      Works like :func:`~mailupy.Mailupy.get_recipients_from_list()` with a filter to the email field.
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param recipient_email: Email of the recipient
+      :type recipient_email: str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``dict`` containing data about recipient or ``None`` if not found
+      :rtype: dict
+
+
+   .. method:: get_subscribed_recipient_from_list(self, list_id, recipient_email)
+
+
+      Get recipient's data only if subscribed to a list.
+
+      Works like :func:`~mailupy.Mailupy.get_subscribed_recipients_from_list()` with a filter to the email field.
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param recipient_email: Email of the recipient
+      :type recipient_email: str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``dict`` containing data about recipient or ``None`` if not found
+      :rtype: dict
+
+
+   .. method:: get_unsubscribed_recipient_from_list(self, list_id, recipient_email)
+
+
+      Get recipient's data only if unsubscribed to a list.
+
+      Works like :func:`~mailupy.Mailupy.get_unsubscribed_recipients_from_list()` with a filter to the email field.
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param recipient_email: Email of the recipient
+      :type recipient_email: str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``dict`` containing data about recipient or ``None`` if not found
+      :rtype: dict
+
+
+   .. method:: get_recipients_from_group(self, group_id, **filter_ordering)
+
+
+      Get recipients' data that belongs to a group.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Retrieverecipientsthatbelongtoagroup>`__
+
+      :param group_id: List ID
+      :type group_id: int, str
+      :param filter_ordering: Keyword arguments for filtering data with ``filter_by='...'`` or sorting data with
+          ``order_by=['field1', ...]`` as described `here
+          <http://help.mailup.com/display/mailupapi/Paging+and+filtering>`__
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict`` containing data about recipients
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_recipient_from_group(self, group_id, recipient_email)
+
+
+      Get recipient's data that belongs to a group.
+
+      Works like :func:`~mailupy.Mailupy.get_recipients_from_group()` with a filter to the email field.
+
+      :param group_id: Group ID
+      :type group_id: int, str
+      :param recipient_email: Email of the recipient
+      :type recipient_email: str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``dict`` containing data about recipient or ``None`` if not found
+      :rtype: dict
+
+
+   .. method:: get_messages_from_list(self, list_id, tags=[], **filter_ordering)
+
+
+      Get messages from a list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Email+messages#Emailmessages-ListMessages>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param tags: Tags to filter
+      :type tags: list of str
+      :param filter_ordering: keyword arguments for filtering data or sorting data with ``order_by`` as list of the keys to order
+      :type filter_ordering: str, list of str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Iterator of ``dict`` containing data about messages
+      :rtype: collections.Iterable[dict]
+
+
+   .. method:: get_or_create_group(self, list_id, group_name)
+
+
+      Get or create a new group specifing its name.
+
+      Uses :func:`~mailupy.Mailupy.get_groups_from_list()` to find a group with the provided name,
+      if not found it's created with :func:`~mailupy.Mailupy.create_group()`.
+
+      :param list_id: List ID
+      :type list_id: int, string
+      :param group_name: Group name
+      :type group_name: str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``tuple`` with the group id and a ``bool`` to indicate whether the group was created or not
+      :rtype: (int, bool)
+
+
+   .. method:: send_message(self, email, message_id, fields={})
+
+
+      Send a message to single recipient with its email.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Email+messages#Emailmessages-Sendtoarecipient>`__
+
+      :param email: Recipient email
+      :type email: str
+      :param message_id: Message ID
+      :type message_id: int, str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``True`` if creation was successful
+      :rtype: bool
+
+
+   .. method:: send_sms(self, prefix, number, message_id, fields={})
+
+
+      Send a message to single recipient with its telephone number.
+      `Link to MailUp Docs
+      <https://help.mailup.com/display/mailupapi/Text+messages+-+SMS#TextmessagesSMS-SingleSend>`__
+      :param prefix: Recipient telephone number prefix
+      :type prefix: str
+      :param number: Recipient telephone number
+      :type number: str
+      :param message_id: Message ID
+      :type message_id: int, str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``True`` if creation was successful
+      :rtype: bool
+
+
+   .. method:: create_group(self, list_id, group_name, notes='')
+
+
+      Create a new group to a list with a given name.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Manage+Lists+and+Groups#ManageListsandGroups-CreateGroup>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param group_name: Group name
+      :type group_name: str
+      :param notes: Notes about the group
+      :type notes: str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``dict`` containing data about the new group
+      :rtype: dict
+
+
+   .. method:: update_customer_fields(self, recipient_name, recipient_email, fields={})
+
+
+      Update data fields for a recipient.
+
+      Example::
+
+       >>> m.update_customer_fields('ABCDEFGHI', 'email@email.email', fields={'compleanno': '11/11'})
+       {
+          'Fields': [
+              {'Description': 'nome', 'Id': 1, 'Value': 'ABCDEFGHI'},
+              {'Description': 'Compleanno', 'Id': 27, 'Value': '11/11'},
+              ...
+          ],
+          'Name': 'ABCDEFGHI',
+          'idRecipient': 13,
+          'Email': 'edoardo.grassi+10@lotrek.it',
+          'MobileNumber': None,
+          'MobilePrefix': None
+       }
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Updatepersonaldatafieldsofasubscriber>`__
+
+      :param recipient_name: Recipient name
+      :type recipient_name: str
+      :param recipient_email: Recipient email
+      :type recipient_email: str
+      :param fields: ``dict`` of fields to edit
+      :type fields: dict
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Fields about a recipient filled with its data
+      :rtype: dict
+
+
+   .. method:: subscribe_to_list(self, list_id, recipient_name, recipient_email, pending=False, fields={})
+
+
+      Subscribe recipient to a list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Addasinglerecipient/subscriber-synchronousimport>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param recipient_name: Recipient name
+      :type recipient_name: str
+      :param recipient_email: Recipient email
+      :type recipient_email: str
+      :param fields: ``dict`` of fields to edit. Works like in :func:`~mailupy.Mailupy.update_customer_fields()`
+      :type fields: dict
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Recipient ID
+      :rtype: int
+
+
+   .. method:: subscribe_to_group(self, group_id, recipient_name, recipient_email, fields={})
+
+
+      Subscribe recipient to a group.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Addasinglerecipient/subscriber-synchronousimport>`__
+
+      :param group_id: Group ID
+      :type group_id: int, str
+      :param recipient_name: Recipient name
+      :type recipient_name: str
+      :param recipient_email: Recipient email
+      :type recipient_email: str
+      :param fields: ``dict`` of fields to edit. Works like in :func:`~mailupy.Mailupy.update_customer_fields()`
+      :type fields: dict
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: Recipient ID
+      :rtype: int
+
+
+   .. method:: unsubscribe_from_list(self, list_id, recipient_mailup_id)
+
+
+      Unsubscribe recipient from list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Updatesubscriptionstatusofarecipient>`__
+
+      :param list_id: List ID
+      :type list_id: int, str
+      :param recipient_mailup_id: Recipient ID
+      :type recipient_mailup_id: int, str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``True`` if the operation was successful
+      :rtype: bool
+
+
+   .. method:: unsubscribe_from_group(self, group_id, recipient_mailup_id)
+
+
+      Unsubscribe recipient from group.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Updategroupassignment>`__
+
+      :param group_id: Group ID
+      :type group_id: int, str
+      :param recipient_mailup_id: Recipient ID
+      :type recipient_mailup_id: int, str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``True`` if the operation was successful
+      :rtype: bool
+
+
+   .. method:: remove_from_list(self, list_id, recipient_mailup_id)
+
+
+      Remove recipient from a list.
+
+      `Link to MailUp Docs
+      <http://help.mailup.com/display/mailupapi/Recipients#Recipients-Removerecipient>`__
+
+      :param list_id: List ID, might be also ``all`` to remove recipient from all lists
+      :type list_id: int, str
+      :param recipient_mailup_id: Recipient ID
+      :type recipient_mailup_id: int, str
+      :raise mailupy.exceptions.MailupyRequestException: if response returns a status code >= 400
+      :return: ``True`` if the operation was successful
+      :rtype: bool
+
+
+
+.. py:exception:: MailupyException
+
+   Bases: :class:`Exception`
+
+   Exception for handling python-related errors.
+
+   It's raised whenever the library encounters an error while preparing the request.
+
+
+.. py:exception:: MailupyRequestException(response)
+
+   Bases: :class:`mailupy.exceptions.MailupyException`
+
+   Exception for handling MailUp errors.
+
+   It's raised whenever the library receive a response with a status code greater than or equal to 400.
+
+
