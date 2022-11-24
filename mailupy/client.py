@@ -1,5 +1,6 @@
 import json
 import urllib
+import math
 
 from .exceptions import MailupyException, MailupyRequestException
 from .utils import type_to_request_function
@@ -54,7 +55,7 @@ class Mailupy:
                 f'{url}{spacer}pageNumber={current}',
                 headers=self._default_headers()
             ).json()
-            total = data['TotalElementsCount'] // data['PageSize']
+            total = math.ceil(data['TotalElementsCount'] / data['PageSize'])
             is_paginated = data['IsPaginated']
             for item in data['Items']:
                 yield item
