@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='mailupy',
-    version='1.1.0',
+    version='1.1.1',
     url='https://github.com/lotrekagency/mailupy',
     install_requires=[
         "requests==2.24.0"
