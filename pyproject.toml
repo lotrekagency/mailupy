@@ -37,7 +37,7 @@ find = {namespaces = false}
 universal = true
 
 [tool.semantic_release]
-version_variables = ["setup.py:__version__", "mailupy/__init__.py:__version__", "mailupy/theme/__init__.py:__version__"]
+version_variables = ["setup.py:__version__", "mailupy/__init__.py:__version__",]
 
 [tool.semantic_release.branches.master]
 match = "master"
