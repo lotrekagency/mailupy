@@ -2,6 +2,23 @@
 
 
 
+## v1.1.2 (2024-01-16)
+
+### Chore
+
+* chore: remove pypi url from CD workflow ([`6f9e3b7`](https://github.com/lotrekagency/mailupy/commit/6f9e3b736eb4d0ac83cff6a5e5560cfb453d00a5))
+
+* chore: pass secret token to pypi upload ([`2e27d41`](https://github.com/lotrekagency/mailupy/commit/2e27d414aad11f67133bdb8725bcc33ba178b8a1))
+
+### Fix
+
+* fix: fix _download_all_pages handler ([`f72d09d`](https://github.com/lotrekagency/mailupy/commit/f72d09d09d267375eb9fe8dbb39875384338a366))
+
+### Unknown
+
+* Merge branch &#39;master&#39; of github.com:lotrekagency/mailupy ([`b5b04d0`](https://github.com/lotrekagency/mailupy/commit/b5b04d07b63e3d71c575fb61a09ad63758996436))
+
+
 ## v1.1.1 (2024-01-16)
 
 ### Chore
