@@ -1,34 +1,51 @@
-name: Release
+name: 🚀 Release
 
 on:
-  workflow_run:
-    workflows: [ "Test and Coverage" ]
-    branches: [ master ]
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+      root_options:
+        description: "Options: semantic-release <options>, es: --noop"
+        default: "-v"
+        required: false
+        type: string
 
 jobs:
-  gen_docs:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  release:
     runs-on: ubuntu-latest
     concurrency: release
-    name: Upload documentation to Github pages
+    name: Release to PyPI 🐍
+    permissions:
+      id-token: write
+      contents: write
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
-    - name: Install dependencies 📦
-      run: |
-        pip install -r requirements-docs.txt
-    - name: Generate docs with Sphinx
-      run: |
-        make docs
-    - name: Deploy docs
-      uses: JamesIves/github-pages-deploy-action@4.1.7
-      with:
-        branch: gh-pages
-        folder: mailupy_docs
+      - name: 📌 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
+      - name: 🗂️ Generate Version and Changelog with Semantic Release
+        id: release
+        uses: python-semantic-release/python-semantic-release@v8.1.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          root_options: ${{ github.event.inputs.root_options }}
+
+      - name: 🚧 Setup build environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+          cache: "pip"
+
+      - name: 🧩 Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: 📦 Build package distributions
+        run: python -m build
+
+      - name: 📤 Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}
