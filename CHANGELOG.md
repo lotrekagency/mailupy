@@ -2,6 +2,23 @@
 
 
 
+## v1.1.3 (2024-01-17)
+
+### Fix
+
+* fix(client): handling more than 20 items in get_fields ([`ab36307`](https://github.com/lotrekagency/mailupy/commit/ab36307aa963de85d35c088a96a34ee27b3a1207))
+
+* fix(exceptions): full response.json() in exception ([`78bb6bd`](https://github.com/lotrekagency/mailupy/commit/78bb6bdb7892284fa6bd8c551d4433c476f3a757))
+
+### Unknown
+
+* Merge pull request #8 from lotrekagency/fix/missing-error-description
+
+Fix/missing error description ([`60d57ad`](https://github.com/lotrekagency/mailupy/commit/60d57adf18e0e695c106202bcafcfe3d14fc4e43))
+
+* Merge remote-tracking branch &#39;origin/master&#39; into fix/missing-error-description ([`1197116`](https://github.com/lotrekagency/mailupy/commit/11971169c3fc8d147092646299ca7853852df995))
+
+
 ## v1.1.2 (2024-01-16)
 
 ### Chore
