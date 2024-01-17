@@ -11,7 +11,7 @@ classifiers = [
   'Programming Language :: Python :: 3'
 ]
 dependencies = [
-  "requests==2.24.0",
+  "requests==2.31.0",
 ]
 description = "Yet another Mailup Python client"
 dynamic = ["version"]
