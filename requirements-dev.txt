@@ -1,5 +1,5 @@
 
-codecov==2.0.16
+codecov==2.1.13
 coverage==4.5.2
 flake8==3.7.9
 mock==2.0.0
