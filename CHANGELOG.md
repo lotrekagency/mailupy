@@ -2,6 +2,27 @@
 
 
 
+## v1.1.4 (2024-03-15)
+
+### Fix
+
+* fix(cipipeline): fix wrong version number ([`65f5caf`](https://github.com/lotrekagency/mailupy/commit/65f5caf6d170c9ee9292055643a0620c5e22c80d))
+
+### Unknown
+
+* Merge pull request #9 from lotrekagency/chore/requests-dependency
+
+deps: update requests dependency ([`aece69c`](https://github.com/lotrekagency/mailupy/commit/aece69ccf99d605889660af9e15c9ae395f1be11))
+
+* deps: update codecov dependency ([`f0a3424`](https://github.com/lotrekagency/mailupy/commit/f0a3424ef0fe3d5ba226febdab01d3d0487b8efe))
+
+* deps: update requests dependency ([`31e9048`](https://github.com/lotrekagency/mailupy/commit/31e9048be49bdde81f8450057b71a21f4e8de9b6))
+
+* Merge pull request #5 from lotrekagency/dependabot/pip/codecov-2.0.16
+
+Bump codecov from 2.0.9 to 2.0.16 ([`3ee84b8`](https://github.com/lotrekagency/mailupy/commit/3ee84b84de27bc60e70e4b7144cb8ece69c6b040))
+
+
 ## v1.1.3 (2024-01-17)
 
 ### Fix
@@ -75,6 +96,21 @@ Fix/missing error description ([`60d57ad`](https://github.com/lotrekagency/mailu
 * Merge pull request #7 from lotrekagency/fix/missing-error-description
 
 fix(exceptions): using get() method while getting ErrorDescription ke… ([`ec3ce7c`](https://github.com/lotrekagency/mailupy/commit/ec3ce7c7d49a60bb93fd7c3e19691fa7d295218a))
+
+* Bump codecov from 2.0.9 to 2.0.16
+
+Bumps [codecov](https://github.com/codecov/codecov-python) from 2.0.9 to 2.0.16.
+- [Release notes](https://github.com/codecov/codecov-python/releases)
+- [Changelog](https://github.com/codecov/codecov-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/codecov/codecov-python/compare/v2.0.9...v2.0.16)
+
+---
+updated-dependencies:
+- dependency-name: codecov
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`316385b`](https://github.com/lotrekagency/mailupy/commit/316385b227a290058c9c390d3900cc89cfbb6ad8))
 
 * Merge pull request #3 from mino89/master
 
