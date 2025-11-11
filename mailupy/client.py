@@ -176,7 +176,7 @@ class Mailupy:
 
         query = self._parse_filter_ordering(**filter_ordering)
         return self._download_all_pages(
-            self._build_url(f'/Recipient/DynamicFields', query)
+            self._build_url('/Recipient/DynamicFields', query)
         )
 
     def get_groups_from_list(self, list_id, **filter_ordering):
