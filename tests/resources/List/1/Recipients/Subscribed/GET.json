@@ -1,0 +1,24 @@
+{
+    "IsPaginated": false,
+    "Items": [
+        {
+            "Email": "test@example.com",
+            "MobileNumber": "+391234567890",
+            "MobilePrefix": "+39",
+            "Name": "Test User",
+            "Status": "SUBSCRIBED",
+            "idRecipient": 42,
+            "Fields": [
+                {
+                    "Description": "First Name",
+                    "Id": 1,
+                    "Value": "Test"
+                }
+            ]
+        }
+    ],
+    "PageNumber": 0,
+    "PageSize": 20,
+    "Skipped": 0,
+    "TotalElementsCount": 1
+}

@@ -1,0 +1,25 @@
+{
+    "IsPaginated": false,
+    "Items": [
+        {
+            "Count": null,
+            "Deletable": false,
+            "Name": "Existing Group",
+            "Notes": "This group already exists",
+            "idGroup": 10,
+            "idList": 1
+        },
+        {
+            "Count": null,
+            "Deletable": false,
+            "Name": "TEST",
+            "Notes": "Gruppo per invii di test",
+            "idGroup": 6,
+            "idList": 1
+        }
+    ],
+    "PageNumber": 0,
+    "PageSize": 20,
+    "Skipped": 0,
+    "TotalElementsCount": 2
+}

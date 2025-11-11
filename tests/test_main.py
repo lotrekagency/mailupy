@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from mailupy import Mailupy, MailupyException, MailupyRequestException
-from .tools import mock_request, mock_request_refresh_token, mock_request_400, mock_requests_error
+from .tools import mock_request, mock_request_refresh_token, mock_request_400, mock_requests_error, mock_request_for_recipient_tests, mock_request_for_group_tests
 
 
 class TestClient(unittest.TestCase):
@@ -43,7 +43,7 @@ class TestClient(unittest.TestCase):
         assert m.send_message('email@email.email', 1)
 
     @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request)
-    def test_send_message(self, func):
+    def test_send_sms(self, func):
         m = Mailupy('username', 'password', 'client-id', 'client-secret')
         assert m.send_sms('+39','0000000000', 1)
 
@@ -122,3 +122,104 @@ class TestClient(unittest.TestCase):
         with self.assertRaises(MailupyException) as ex:
             m = Mailupy('username', 'password', 'client-id', 'client-secret')
             assert m.remove_from_list(1, 18)
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_recipient_tests)
+    def test_get_recipient_from_group_found(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m.get_recipient_from_group(6, 'test@example.com')
+        assert result is not None
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_recipient_tests)
+    def test_get_recipient_from_group_not_found(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m.get_recipient_from_group(6, 'nonexistent@example.com')
+        assert result is None
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_recipient_tests)
+    def test_get_recipient_from_generic_list_subscribed_found(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m._get_recipient_from_generic_list('Subscribed', 1, 'test@example.com')
+        assert result is not None
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_recipient_tests)
+    def test_get_recipient_from_generic_list_unsubscribed_not_found(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m._get_recipient_from_generic_list('Unsubscribed', 1, 'test@example.com')
+        assert result is None
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request)
+    def test_get_recipient_from_generic_list_emailoptins_found(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m._get_recipient_from_generic_list('EmailOptins', 1, 'email@email.email')
+        assert result is not None
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request)
+    def test_send_message_with_fields(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        fields = {'Nome': 'John', 'Cognome': 'Doe'}
+        result = m.send_message('test@example.com', 123, fields)
+        assert result is True
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request)
+    def test_send_message_without_fields(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m.send_message('test@example.com', 123)
+        assert result is True
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request)
+    def test_send_message_empty_fields(self, func):
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        result = m.send_message('test@example.com', 123, {})
+        assert result is True
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_group_tests)
+    def test_get_or_create_group_existing(self, func):
+        mock_request_for_group_tests.scenario = 'group_exists'
+
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        group_id, created = m.get_or_create_group(1, 'Existing Group')
+
+        assert group_id == 10
+        assert created is False
+
+        if hasattr(mock_request_for_group_tests, 'scenario'):
+            delattr(mock_request_for_group_tests, 'scenario')
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_group_tests)
+    def test_get_or_create_group_new(self, func):
+        mock_request_for_group_tests.scenario = 'group_not_exists'
+
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+        group_id, created = m.get_or_create_group(1, 'New Group')
+
+        assert group_id == 11
+        assert created is True
+
+        if hasattr(mock_request_for_group_tests, 'scenario'):
+            delattr(mock_request_for_group_tests, 'scenario')
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_group_tests)
+    def test_get_or_create_group_existing_case_sensitive(self, func):
+        mock_request_for_group_tests.scenario = 'group_exists'
+
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+
+        group_id, created = m.get_or_create_group(1, 'TEST')
+        assert group_id == 6
+        assert created is False
+
+        if hasattr(mock_request_for_group_tests, 'scenario'):
+            delattr(mock_request_for_group_tests, 'scenario')
+
+    @patch('mailupy.Mailupy._requests_wrapper', side_effect=mock_request_for_group_tests)
+    def test_get_or_create_group_case_mismatch_creates_new(self, func):
+        mock_request_for_group_tests.scenario = 'group_not_exists'
+
+        m = Mailupy('username', 'password', 'client-id', 'client-secret')
+
+        group_id, created = m.get_or_create_group(1, 'test')
+        assert group_id == 11
+        assert created is True
+
+        if hasattr(mock_request_for_group_tests, 'scenario'):
+            delattr(mock_request_for_group_tests, 'scenario')
