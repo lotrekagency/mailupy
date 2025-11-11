@@ -56,7 +56,7 @@ class Mailupy:
                 headers=self._default_headers()
             ).json()
             total = math.ceil(data.get('TotalElementsCount', 0) / data.get('PageSize', 1))
-            if data.get('TotalElementsCount', 0) % data.get('PageSize', 1) :
+            if data.get('TotalElementsCount', 0) % data.get('PageSize', 1):
                 total += 1
             is_paginated = data.get('IsPaginated', False)
             for item in data.get('Items', []):
